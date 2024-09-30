@@ -65,7 +65,11 @@ The RESTful Movies API is a web-based application designed to handle movie data.
 1. Clone the repository:
    ```bash
    git clone https://github.com/Om-Saraykar/gdg-backend-task.git
-   cd movies-api
+   ```
+   ```bash
+   cd gdg-backend-task
+   ```
+   ```bash
    cd backend
    ```
 
@@ -80,9 +84,18 @@ The RESTful Movies API is a web-based application designed to handle movie data.
    JWT_SECRET=<your_jwt_secret>
    REDIS_URL=<Redis_Connection_URL>
    ```
-   .env file is already added in the project so you can skip this step
+   **NOTE** - .env file is already added in the project so you can skip this step
 
-4. Start the development server:
+4. Starting Redis Container
+    Before starting the backend server, ensure that **Docker Desktop** is running. Then, use the following command to start a Redis container:
+    ```bash
+    docker run -d --name redis-container -p 6379:6379 redis
+    ```
+    This command will run the Redis container in detached mode and expose it on port 6379, which is necessary for the caching functionality in the Movies API.
+    Make sure that **Docker Desktop** is up and running to avoid any connection issues.
+
+
+5. Start the development server:
    ```bash
    node server.js
    ```
@@ -140,13 +153,6 @@ The React frontend allows users to:
 - Add new movies to the database.
 - Edit or delete existing movies.
 - View detailed information for a specific movie.
-
-### **Running the Frontend**
-1. Run the React app with the command:
-   ```bash
-   npm start
-   ```
-2. Open the browser and navigate to `http://localhost:3000` to interact with the Movies API.
 
 ---
 

@@ -128,20 +128,22 @@ The RESTful Movies API is a web-based application designed to handle movie data.
 Here are the main API routes for the Movies API:
 
 ### **Movies**
-- `GET /api/movies` – Get all movies.
-- `POST /api/movies` – Add a new movie.
-- `GET /api/movies/:id` – Get details of a specific movie.
-- `PUT /api/movies/:id` – Update an existing movie.
-- `DELETE /api/movies/:id` – Delete a movie.
+- `GET /api/v1/movies` – Retrieve a list of all movies, with optional filtering and sorting.
+- `POST /api/v1/movies` – Add a new movie (requires authentication).
+- `GET /api/v1/movies/:id` – Retrieve the details of a specific movie by its ID.
+- `PUT /api/v1/movies/:id` – Update a specific movie by its ID (requires authentication).
+- `DELETE /api/v1/movies/:id` – Delete a specific movie by its ID (requires authentication).
 
 ### **Filtering and Search**
-- `GET /api/movies?genre=<genre>` – Filter movies by genre.
-- `GET /api/movies?year=<year>` – Filter movies by release year.
-- `GET /api/movies?rating=<rating>` – Filter movies by rating.
+- `GET /api/v1/movies?genre=<genre>` – Filter movies by genre.
+- `GET /api/v1/movies?year=<year>` – Filter movies by release year.
+- `GET /api/v1/movies?rating=<rating>` – Filter movies by rating.
+- `GET /api/v1/movies?runtime=<runtime>` – Filter movies by runtime.
+- `GET /api/v1/movies?sortBy=<field>&order=<asc|desc>` – Sort movies by specific fields such as title, genre, release date, rating, or runtime.
 
 ### **User Authentication**
-- `POST /api/users/login` – Login user using JWT.
-- `POST /api/users/signup` – Register new user.
+- `POST /api/auth/login` – Login a user using JWT.
+- `POST /api/auth/register` – Register a new user.
 
 ---
 
@@ -160,7 +162,7 @@ The React frontend allows users to:
 
 ### **User Authentication**
 - Authentication is done using **JWT (JSON Web Tokens)** for stateless sessions.
-- Protected routes ensure that only logged-in users can access certain features, like adding or editing movies.
+- Protected routes ensure that only logged-in users can access app features.
 
 ### **Rate Limiting**
 - **API rate limiting** prevents abuse by limiting the number of requests a user can make in a given time period.
@@ -168,7 +170,7 @@ The React frontend allows users to:
 
 ### **Caching with Redis**
 - Redis is used to **cache movie queries**, improving performance by reducing the load on the MongoDB database.
-- Cached data is refreshed at configurable intervals.
+- Cached data is refreshed at configurable intervals or when data is changed.
 
 ### **API Versioning**
 - Versioning is done by prefixing routes with `/v1`, `/v2`, etc., ensuring backward compatibility for future updates.
@@ -178,10 +180,7 @@ The React frontend allows users to:
 ## **References**
 
 - [Node.js API Documentation](https://nodejs.org/en/docs/)
-- [Django REST Framework Documentation](https://www.django-rest-framework.org/)
 - [React Documentation](https://reactjs.org/docs/getting-started.html)
-- [Flask Documentation](https://flask.palletsprojects.com/)
 - [Docker Documentation](https://docs.docker.com/)
-- [Shadcn Documentation](https://shadcn.dev/)
 
 ---

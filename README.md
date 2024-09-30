@@ -64,7 +64,7 @@ The RESTful Movies API is a web-based application designed to handle movie data.
 
 1. Clone the repository:
    ```bash
-   git clone <repo_url>
+   git clone https://github.com/Om-Saraykar/gdg-backend-task.git
    cd movies-api
    cd backend
    ```

@@ -1,27 +1,29 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom'; // Import Link from react-router-dom
+import { Link, useNavigate } from 'react-router-dom'; // Import useNavigate from react-router-dom
 
 const Signup = () => {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const navigate = useNavigate(); // Initialize the useNavigate hook
 
   const handleSignup = async (e) => {
     e.preventDefault();
-    setError(''); // Reset error state on new signup attempt
+    setError(''); 
     try {
       const response = await axios.post('http://localhost:5000/api/auth/register', {
         username,
         email,
         password,
       });
-      // Redirect to login or dashboard after successful signup
-      console.log(response.data); // You can handle success here
-      // Optionally, you could redirect or show a success message
+
+      // Show success alert and navigate to login page
+      alert('Account created successfully! Please log in.');
+      navigate('/login'); // Navigate to login after successful signup
+      
     } catch (err) {
-      // Check if the error response exists and set an error message accordingly
       if (err.response && err.response.data && err.response.data.message) {
         setError(err.response.data.message);
       } else {
